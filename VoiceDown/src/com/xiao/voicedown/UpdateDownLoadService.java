@@ -1,4 +1,4 @@
-package com.example.voicedown;
+package com.xiao.voicedown;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.example.voicedown.R;
 
 import android.app.Notification;
 import android.app.NotificationManager;

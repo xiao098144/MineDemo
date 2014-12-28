@@ -1,22 +1,22 @@
-package com.example.voicedown;
+package com.xiao.voicedown;
 
 import java.io.File;
 
 import android.os.Environment;
 
 /**
- * 各种路径获取类
+ * 鍚勭璺緞鑾峰彇绫�
  * 
  * @File_name: FilePathUtil.java
  * @Package_name: com.eastedge.safeinhand.utils
  * @Author lumeng
- * @Date : 2013-04-10下午12:08:07
+ * @Date : 2013-04-10涓嬪崍12:08:07
  * @Version 1.0
  */
 public class FilePathUtil {
 	/**
-	 * 获取工程包名(com.ab.cde)
-	 * 
+	 * 鑾峰彇宸ョ▼鍖呭悕(com.ab.cde)
+	 *    
 	 * @return
 	 */
 	private static String getProjectPackage() {
@@ -24,12 +24,12 @@ public class FilePathUtil {
 //		String[] split2 = packagename.split(" ");
 //		String[] split = split2[1].split("[.]");
 //		return split[0] + "." + split[1] + "." + split[2];
-		// TODO 每一个项目 
-		return "com.ddoctor.user";
+		// TODO 姣忎竴涓」鐩�
+		return "com.xiao.voicedown";
 	}
 
 	/**
-	 * 获取工程包名第三个字段（一般为项目名称）(com.ab.cde:cde为项目名称)
+	 * 鑾峰彇宸ョ▼鍖呭悕绗笁涓瓧娈碉紙涓�埇涓洪」鐩悕绉帮級(com.ab.cde:cde涓洪」鐩悕绉�
 	 * 
 	 * @return
 	 */
@@ -37,11 +37,11 @@ public class FilePathUtil {
 		/*String packageName = FilePathUtil.class.getPackage().toString();
 		String[] split = packageName.split("[.]");
 		return split[2];*/
-		return "ddoctoruser";
+		return "voicedown";
 	}
 
 	/**
-	 * 判断sd卡是否存在
+	 * 鍒ゆ柇sd鍗℃槸鍚﹀瓨鍦�
 	 * 
 	 * @return
 	 */
@@ -54,9 +54,9 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 文件夹路径的根目录
+	 * 鏂囦欢澶硅矾寰勭殑鏍圭洰褰�
 	 * 
-	 * @return 如果sd卡存在就返回sd目录，如果不存在就返回内存包名路径
+	 * @return 濡傛灉sd鍗″瓨鍦ㄥ氨杩斿洖sd鐩綍锛屽鏋滀笉瀛樺湪灏辫繑鍥炲唴瀛樺寘鍚嶈矾寰�
 	 */
 	public static String getRootPath() {
 		if (isSDCardExist()) {
@@ -69,12 +69,12 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取项目主文件夹路径，并创建该文件夹
+	 * 鑾峰彇椤圭洰涓绘枃浠跺す璺緞锛屽苟鍒涘缓璇ユ枃浠跺す
 	 * 
-	 * @return 主文件夹路径
+	 * @return 涓绘枃浠跺す璺緞
 	 */
 	public static String getMainRootPath() {
-		String projectName = "sound_recorder";
+		String projectName = "voicedown";
 		String mainRootPath = getRootPath() + "/" + projectName;
 		File file = new File(mainRootPath); 
 		if (!file.exists()) {
@@ -84,7 +84,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 头像本地地址
+	 * 澶村儚鏈湴鍦板潃
 	 * @return
 	 */
 	public static String getHeadPicPath(){
@@ -97,7 +97,7 @@ public class FilePathUtil {
 	}
 	
 	/**
-	 * 获取项目主文件夹下图片存放的路径，并创建该文件夹
+	 * 鑾峰彇椤圭洰涓绘枃浠跺す涓嬪浘鐗囧瓨鏀剧殑璺緞锛屽苟鍒涘缓璇ユ枃浠跺す
 	 * 
 	 * @return
 	 */
@@ -111,7 +111,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取项目主文件夹下下载文件存放的路径，并创建该文件夹
+	 * 鑾峰彇椤圭洰涓绘枃浠跺す涓嬩笅杞芥枃浠跺瓨鏀剧殑璺緞锛屽苟鍒涘缓璇ユ枃浠跺す
 	 * 
 	 * @return
 	 */
@@ -125,7 +125,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取项目主文件夹下log日志存放的路径，并创建该文件夹
+	 * 鑾峰彇椤圭洰涓绘枃浠跺す涓媗og鏃ュ織瀛樻斁鐨勮矾寰勶紝骞跺垱寤鸿鏂囦欢澶�
 	 * 
 	 * @return
 	 */
@@ -139,7 +139,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取项目主文件夹下log日志存放的路径，并创建该文件夹
+	 * 鑾峰彇椤圭洰涓绘枃浠跺す涓媗og鏃ュ織瀛樻斁鐨勮矾寰勶紝骞跺垱寤鸿鏂囦欢澶�
 	 * 
 	 * @return
 	 */
@@ -153,7 +153,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取cache路径
+	 * 鑾峰彇cache璺緞
 	 * 
 	 * @param @return
 	 * @return String
@@ -169,7 +169,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取项目主文件夹下log日志存放的路径，并创建该文件夹
+	 * 鑾峰彇椤圭洰涓绘枃浠跺す涓媗og鏃ュ織瀛樻斁鐨勮矾寰勶紝骞跺垱寤鸿鏂囦欢澶�
 	 * 
 	 * @return
 	 */
@@ -183,7 +183,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取文件名
+	 * 鑾峰彇鏂囦欢鍚�
 	 * 
 	 * @param path
 	 * @return
@@ -194,7 +194,7 @@ public class FilePathUtil {
 	}
 
 	/**
-	 * 获取文件名
+	 * 鑾峰彇鏂囦欢鍚�
 	 * 
 	 * @param file
 	 * @return

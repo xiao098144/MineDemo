@@ -48,39 +48,39 @@ public class Main extends Activity
 {
     private static int order = 0;
     
-    /** ×Ü¹²¶àÉÙÈÎÎñ£¨¸ù¾ÝCPU¸öÊý¾ö¶¨´´½¨»î¶¯Ïß³ÌµÄ¸öÊý,ÕâÑùÈ¡µÄºÃ´¦¾ÍÊÇ¿ÉÒÔÈÃÊÖ»ú³ÐÊÜµÃ×¡£© */
+    /** ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ£¨¸ï¿½ï¿½CPUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î¶¯ï¿½ß³ÌµÄ¸ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½È¡ï¿½ÄºÃ´ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Üµï¿½×¡ï¿½ï¿½ */
     // private static final int count = Runtime.getRuntime().availableProcessors() * 3 + 2;
     
-    /** ×Ü¹²¶àÉÙÈÎÎñ£¨ÎÒÊÇÔÚÄ£ÄâÆ÷ÀïÃæÅÜµÄ£¬ÎªÁËÐ§¹ûÃ÷ÏÔ£¬ËùÒÔÐ´ËÀÁËÎª10¸ö£¬Èç¹ûÔÚÊÖ»úÉÏµÄ»°£¬ÍÆ¼öÊ¹ÓÃÉÏÃæµÄÄÇ¸öcount£© */
+    /** ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÜµÄ£ï¿½Îªï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Îª10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ÏµÄ»ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½countï¿½ï¿½ */
     private static final int count = 10;
     
-    /** Ã¿´ÎÖ»Ö´ÐÐÒ»¸öÈÎÎñµÄÏß³Ì³Ø */
+    /** Ã¿ï¿½ï¿½Ö»Ö´ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½ */
     private static ExecutorService singleTaskExecutor = null;
     
-    /** Ã¿´ÎÖ´ÐÐÏÞ¶¨¸öÊý¸öÈÎÎñµÄÏß³Ì³Ø */
+    /** Ã¿ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½ */
     private static ExecutorService limitedTaskExecutor = null;
     
-    /** ËùÓÐÈÎÎñ¶¼Ò»´ÎÐÔ¿ªÊ¼µÄÏß³Ì³Ø */
+    /** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼ï¿½ï¿½ï¿½ß³Ì³ï¿½ */
     private static ExecutorService allTaskExecutor = null;
     
-    /** ´´½¨Ò»¸ö¿ÉÔÚÖ¸¶¨Ê±¼äÀïÖ´ÐÐÈÎÎñµÄÏß³Ì³Ø£¬Òà¿ÉÖØ¸´Ö´ÐÐ */
+    /** ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø£ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ö´ï¿½ï¿½ */
     private static ExecutorService scheduledTaskExecutor = null;
     
-    /** ´´½¨Ò»¸ö¿ÉÔÚÖ¸¶¨Ê±¼äÀïÖ´ÐÐÈÎÎñµÄÏß³Ì³Ø£¬Òà¿ÉÖØ¸´Ö´ÐÐ£¨²»Í¬Ö®´¦£ºÊ¹ÓÃ¹¤³ÌÄ£Ê½£© */
+    /** ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø£ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ö´ï¿½Ð£ï¿½ï¿½ï¿½Í¬Ö®ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¹ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ */
     private static ExecutorService scheduledTaskFactoryExecutor = null;
     
     private List<AsyncTaskTest> mTaskList = null;
     
-    /** ÈÎÎñÊÇ·ñ±»È¡Ïû */
+    /** ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½È¡ï¿½ï¿½ */
     private boolean isCancled = false;
     
-    /** ÊÇ·ñµã»÷²¢È¡ÏûÈÎÎñ±êÊ¾·û */
+    /** ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ */
     private boolean isClick = false;
     
-    /** Ïß³Ì¹¤³§³õÊ¼»¯·½Ê½Ò» */
+    /** ï¿½ß³Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê½Ò» */
     ThreadFactory tf = Executors.defaultThreadFactory();
     
-    /** Ïß³Ì¹¤³§³õÊ¼»¯·½Ê½¶þ */
+    /** ï¿½ß³Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ */
     private static class ThreadFactoryTest implements ThreadFactory
     {
         
@@ -89,18 +89,18 @@ public class Main extends Activity
         {
             Thread thread = new Thread(r);
             thread.setName("XiaoMaGuo_ThreadFactory");
-            thread.setDaemon(true); // ½«ÓÃ»§Ïß³Ì±ä³ÉÊØ»¤Ïß³Ì,Ä¬ÈÏfalse
+            thread.setDaemon(true); // ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ß³Ì±ï¿½ï¿½ï¿½Ø»ï¿½ï¿½ß³ï¿½,Ä¬ï¿½ï¿½false
             return thread;
         }
     }
     
     static
-    {
-        singleTaskExecutor = Executors.newSingleThreadExecutor();// Ã¿´ÎÖ»Ö´ÐÐÒ»¸öÏß³ÌÈÎÎñµÄÏß³Ì³Ø
-        limitedTaskExecutor = Executors.newFixedThreadPool(3);// ÏÞÖÆÏß³Ì³Ø´óÐ¡Îª7µÄÏß³Ì³Ø
-        allTaskExecutor = Executors.newCachedThreadPool(); // Ò»¸öÃ»ÓÐÏÞÖÆ×î´óÏß³ÌÊýµÄÏß³Ì³Ø
-        scheduledTaskExecutor = Executors.newScheduledThreadPool(3);// Ò»¸ö¿ÉÒÔ°´Ö¸¶¨Ê±¼ä¿ÉÖÜÆÚÐÔµÄÖ´ÐÐµÄÏß³Ì³Ø
-        scheduledTaskFactoryExecutor = Executors.newFixedThreadPool(3, new ThreadFactoryTest());// °´Ö¸¶¨¹¤³§Ä£Ê½À´Ö´ÐÐµÄÏß³Ì³Ø
+    {   
+        singleTaskExecutor = Executors.newSingleThreadExecutor();// Ã¿ï¿½ï¿½Ö»Ö´ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½
+        limitedTaskExecutor = Executors.newFixedThreadPool(3);// ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø´ï¿½Ð¡Îª7ï¿½ï¿½ï¿½ß³Ì³ï¿½
+        allTaskExecutor = Executors.newCachedThreadPool(); // Ò»ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½
+        scheduledTaskExecutor = Executors.newScheduledThreadPool(3);// Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ô°ï¿½Ö¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ö´ï¿½Ðµï¿½ï¿½ß³Ì³ï¿½
+        scheduledTaskFactoryExecutor = Executors.newFixedThreadPool(3, new ThreadFactoryTest());// ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Ö´ï¿½Ðµï¿½ï¿½ß³Ì³ï¿½
         scheduledTaskFactoryExecutor.submit(new Runnable()
         {
             
@@ -125,27 +125,27 @@ public class Main extends Activity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                if (position == 0) // ÒÔµÚÒ»ÏîÎªÀý£¬À´²âÊÔ¹Ø±ÕÏß³Ì³Ø
+                if (position == 0) // ï¿½Ôµï¿½Ò»ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¹Ø±ï¿½ï¿½ß³Ì³ï¿½
                 {
                     /**
-                     * »á¹Ø±ÕÏß³Ì³Ø·½Ê½Ò»£ºµ«²»½ÓÊÕÐÂµÄTask,¹Ø±Õºó£¬ÕýÔÚµÈ´ý Ö´ÐÐµÄÈÎÎñ²»ÊÜÈÎºÎÓ°Ïì£¬»áÕý³£Ö´ÐÐ,ÎÞ·µ»ØÖµ!
+                     * ï¿½ï¿½Ø±ï¿½ï¿½ß³Ì³Ø·ï¿½Ê½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Task,ï¿½Ø±Õºï¿½ï¿½ï¿½ï¿½ÚµÈ´ï¿½ Ö´ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½Ó°ï¿½ì£¬ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½,ï¿½Þ·ï¿½ï¿½ï¿½Öµ!
                      */
                     // allTaskExecutor.shutdown();
                     
                     /**
-                     * »á¹Ø±ÕÏß³Ì³Ø·½Ê½¶þ£ºÒ²²»½ÓÊÕÐÂµÄTask£¬²¢Í£Ö¹ÕýµÈ´ýÖ´ÐÐµÄTask£¨Ò²¾ÍÊÇËµ£¬ Ö´ÐÐµ½Ò»°ëµÄÈÎÎñ½«Õý³£Ö´ÐÐÏÂÈ¥£©£¬×îÖÕ»¹»á¸øÄã·µ»ØÒ»¸öÕýÔÚµÈ´ýÖ´ÐÐµ«Ïß³Ì³Ø¹Ø±ÕÈ´Ã»ÓÐ±»Ö´ÐÐµÄTask¼¯ºÏ£¡
+                     * ï¿½ï¿½Ø±ï¿½ï¿½ß³Ì³Ø·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Taskï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½ï¿½È´ï¿½Ö´ï¿½Ðµï¿½Taskï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ Ö´ï¿½Ðµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ã·µï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ÚµÈ´ï¿½Ö´ï¿½Ðµï¿½ï¿½ß³Ì³Ø¹Ø±ï¿½È´Ã»ï¿½Ð±ï¿½Ö´ï¿½Ðµï¿½Taskï¿½ï¿½ï¿½Ï£ï¿½
                      */
                     List<Runnable> unExecRunn = allTaskExecutor.shutdownNow();
                     
                     for (Runnable r : unExecRunn)
                     {
-                        Log.i("KKK", "Î´Ö´ÐÐµÄÈÎÎñÐÅÏ¢£º=" + unExecRunn.toString());
+                        Log.i("KKK", "Î´Ö´ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½=" + unExecRunn.toString());
                     }
                     Log.i("KKK", "Is shutdown ? = " + String.valueOf(allTaskExecutor.isShutdown()));
                     allTaskExecutor = null;
                 }
                 
-                // ÒÔµÚ¶þÏîÎªÀýÀ´²âÊÔÊÇ·ñÈ¡ÏûÖ´ÐÐµÄÈÎÎñ
+                // ï¿½ÔµÚ¶ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½È¡ï¿½ï¿½Ö´ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
                 AsyncTaskTest sat = mTaskList.get(1);
                 if (position == 1)
                 {
@@ -175,13 +175,13 @@ public class Main extends Activity
                         }
                         
                         /**
-                         * ÓÉÓÚÉÏÃæ²âÊÔ¹Ø±Õ£¬ÔÚ²»ÖØÐÂÉú³ÉallTaskExecutorµÄÍ¬Ê±£¬»á±¨Òì³££¨Ã»ÓÐ¿ÉÒÔÊ¹ÓÃµÄÏß³Ì³Ø£¬¹Ê´Ë´¦ÖØÐÂÉú³ÉÏß³Ì³Ø¶ÔÏó£©
+                         * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¹Ø±Õ£ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½allTaskExecutorï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½á±¨ï¿½ì³£ï¿½ï¿½Ã»ï¿½Ð¿ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ß³Ì³Ø£ï¿½ï¿½Ê´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø¶ï¿½ï¿½ï¿½
                          */
                         if (allTaskExecutor == null)
                         {
                             allTaskExecutor = Executors.newCachedThreadPool();
                         }
-                        sat.executeOnExecutor(allTaskExecutor); // The task is already running(ÕâÒ²ÊÇ¸öÒì³£Å¶£¬Ð¡ÐÄÊ¹ÓÃ£¡ )
+                        sat.executeOnExecutor(allTaskExecutor); // The task is already running(ï¿½ï¿½Ò²ï¿½Ç¸ï¿½ï¿½ì³£Å¶ï¿½ï¿½Ð¡ï¿½ï¿½Ê¹ï¿½Ã£ï¿½ )
                     }
                 }
                 else
@@ -197,7 +197,7 @@ public class Main extends Activity
     }
     
     /**
-     * @TODO [ListView ItemµÄÌõÄ¿ÊÊÅäÆ÷]
+     * @TODO [ListView Itemï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]
      * @author XiaoMaGuo ^_^
      * @version [version-code, 2013-10-22]
      * @since [Product/module]
@@ -245,41 +245,41 @@ public class Main extends Activity
                 AsyncTaskTest task = new AsyncTaskTest((MyListItem)convertView);
                 
                 /**
-                 * ÏÂÃæÁ½ÖÖÈÎÎñÖ´ÐÐÐ§¹û¶¼Ò»Ñù,ÐÎ±äÖÊ²»±ä
+                 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Ð§ï¿½ï¿½Ò»ï¿½ï¿½,ï¿½Î±ï¿½ï¿½Ê²ï¿½ï¿½ï¿½
                  * */
                 // task.execute();
                 // task.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
                 
                 /**
-                 * ÏÂÃæµÄ·½Ê½ÔÚÐ¡ÓÚAPI 11¼¶Ê±Ð§¹ûÊÇÒ»ÑùµÄ£¬µ«ÔÚ¸ß°æ±¾ÖÐµÄÉÔÎ¢ÓÐµã²»Í¬,¿ÉÒÔ¿´ÒÔÏÂAsyncTaskºËÐÄ±äÁ¿µÄ¶¨Òå¾ÍÖªµÀÁËÊ¹ÓÃÈçÏÂ
-                 * ·½Ê½Ê±£¬ÏµÍ³»áÄ¬ÈÏµÄ²ÉÓÃÎå¸öÒ»×é£¬Îå¸öÒ»×éµÄ·½Ê½À´Ö´ÐÐÎÒÃÇµÄÈÎÎñ£¬¶¨ÒåÔÚ£ºAsyncTask.classÖÐ£¬private static final int CORE_POOL_SIZE = 5;
+                 * ï¿½ï¿½ï¿½ï¿½Ä·ï¿½Ê½ï¿½ï¿½Ð¡ï¿½ï¿½API 11ï¿½ï¿½Ê±Ð§ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ú¸ß°æ±¾ï¿½Ðµï¿½ï¿½ï¿½Î¢ï¿½Ðµã²»Í¬,ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½AsyncTaskï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Öªï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                 * ï¿½ï¿½Ê½Ê±ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ä¬ï¿½ÏµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½é£¬ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ä·ï¿½Ê½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ñ£¬¶ï¿½ï¿½ï¿½ï¿½Ú£ï¿½AsyncTask.classï¿½Ð£ï¿½private static final int CORE_POOL_SIZE = 5;
                  * */
                 // use AsyncTask#THREAD_POOL_EXECUTOR is the same to older version #execute() (less than API 11)
                 // but different from newer version of #execute()
                 // task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 
                 /**
-                 * Ò»¸öÒ»¸öÖ´ÐÐÎÒÃÇµÄÈÎÎñ,Ð§¹ûÓë°´Ë³ÐòÖ´ÐÐÊÇÒ»ÑùµÄ(AsyncTask.SERIAL_EXECUTOR)
+                 * Ò»ï¿½ï¿½Ò»ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½,Ð§ï¿½ï¿½ï¿½ë°´Ë³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½(AsyncTask.SERIAL_EXECUTOR)
                  * */
                 // task.executeOnExecutor(singleTaskExecutor);
                 
                 /**
-                 * °´ÎÒÃÇÖ¸¶¨µÄ¸öÊýÀ´Ö´ÐÐÈÎÎñµÄÏß³Ì³Ø
+                 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½
                  * */
                 // task.executeOnExecutor(limitedTaskExecutor);
                 
                 /**
-                 * ²»ÏÞ¶¨Ö¸¶¨¸öÊýµÄÏß³Ì³Ø£¬Ò²¾ÍÊÇËµ£ºÄãÍùÀïÃæ·ÅÁË¼¸¸öÈÎÎñ£¬ËûÈ«²¿Í¬Ò»Ê±¼ä¿ªÊ¼Ö´ÐÐ£¬ ²»¹ÜÄãÊÖ»úÊÜµÃÁËÊÜ²»ÁË
+                 * ï¿½ï¿½ï¿½Þ¶ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø£ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½Í¬Ò»Ê±ï¿½ä¿ªÊ¼Ö´ï¿½Ð£ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Üµï¿½ï¿½ï¿½ï¿½Ü²ï¿½ï¿½ï¿½
                  * */
                 task.executeOnExecutor(allTaskExecutor);
                 
                 /**
-                 * ´´½¨Ò»¸ö¿ÉÔÚÖ¸¶¨Ê±¼äÀïÖ´ÐÐÈÎÎñµÄÏß³Ì³Ø£¬Òà¿ÉÖØ¸´Ö´ÐÐ
+                 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³Ø£ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ö´ï¿½ï¿½
                  * */
                 // task.executeOnExecutor(scheduledTaskExecutor);
                 
                 /**
-                 * ´´½¨Ò»¸ö°´Ö¸¶¨¹¤³§Ä£Ê½À´Ö´ÐÐÈÎÎñµÄÏß³Ì³Ø,¿ÉÄÜ±È½ÏÕý¹æ,µ«Ò²²»³£ÓÃ
+                 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½,ï¿½ï¿½ï¿½Ü±È½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                  */
                 // task.executeOnExecutor(scheduledTaskFactoryExecutor);
                 mTaskList.add(task);
@@ -299,12 +299,12 @@ public class Main extends Activity
             mTaskItem = item;
             if (order < count || order == count)
             {
-                id = "Ö´ÐÐ:" + String.valueOf(++order);
+                id = "Ö´ï¿½ï¿½:" + String.valueOf(++order);
             }
             else
             {
                 order = 0;
-                id = "Ö´ÐÐ:" + String.valueOf(++order);
+                id = "Ö´ï¿½ï¿½:" + String.valueOf(++order);
             }
         }
         
@@ -326,29 +326,29 @@ public class Main extends Activity
         @Override
         protected Void doInBackground(Void... params)
         {
-            if (!isCancelled() && isCancled == false) // Õâ¸öµØ·½ºÜ¹Ø¼ü£¬Èç¹û²»ÉèÖÃ±êÖ¾Î»µÄ»°£¬Ö±½ÓsetCancel£¨true£©ÊÇÎÞÐ§µÄ
+            if (!isCancelled() && isCancled == false) // ï¿½ï¿½ï¿½ï¿½Ø·ï¿½ï¿½Ü¹Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½Ö¾Î»ï¿½Ä»ï¿½ï¿½ï¿½Ö±ï¿½ï¿½setCancelï¿½ï¿½trueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
             {
                 int prog = 0;
                 
                 /**
-                 * ÏÂÃæµÄwhileÖÐ£¬Ð¡ÂíÐ´ÁË¸ö·ÖÖ§ÓÃÀ´×ö¸ö¼ÙÏó£¨ÈÎÎñ¶«Î÷¸Õ¿ªÊ¼ÏÂÔØµÄÊ±ºò£¬ËÙ¶È¿ì£¬¿ìÏÂÔØÍê³ÉµÄÊ±ºò¾ÍÍ»È»¼äÂýÁËÏÂÀ´µÄÐ§¹û£¬ ´ó¼Ò¿ÉÒÔÏëÏóÒ»ÏÂ£¬ÀàËÆ
-                 * £ºPPÊÖ»úÖúÊÖ¡¢91ÊÖ»úÖúÊÖÖÐ»òÆäËüÊÖ»úÓ¦ÓÃÖÐ£¬¼¸ºõ¶¼ÓÐÕâ¸ö¼ÙÏó£¬¿ªÊ¼¿ì£¬½áÊøÊ±¾ÍÏÂÔØ±äÂýÁË£¬½²°×ÁË ¾ÍÊÇ¿ª·¢µÄÈË²»ÏëÈÃÄãÔÚÏÂÔØµ½´óÓÚÒ»°ëµÄÊ±ºò£¬Ò²¾ÍÊÇ¿ìÏÂÔØÍêµÄÊ±ºòÈ¥µãÈ¡Ïû£¬ÄãÄÇÑùµÃ¶àÀË·Ñ
-                 * £¡ËùÒÔÔì¸ö¼ÙÏó£¬ÈÃÄã²»ÏëÈ¥È¡Ïû¶øÒÑ£©
+                 * ï¿½ï¿½ï¿½ï¿½ï¿½whileï¿½Ð£ï¿½Ð¡ï¿½ï¿½Ð´ï¿½Ë¸ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½Ê¼ï¿½ï¿½ï¿½Øµï¿½Ê±ï¿½ï¿½ï¿½Ù¶È¿ì£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½Ê±ï¿½ï¿½ï¿½Í»È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½
+                 * ï¿½ï¿½PPï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½91ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ó¦ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬¿ï¿½Ê¼ï¿½ì£¬ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ò²ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½È¥ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½Ë·ï¿½
+                 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã²»ï¿½ï¿½È¥È¡ï¿½ï¿½ï¿½ï¿½Ñ£ï¿½
                  */
                 while (prog < 101)
                 {
                     
-                    if ((prog > 0 || prog == 0) && prog < 70) // Ð¡ÓÚ70%Ê±£¬¼Ó¿ì½ø¶ÈÌõ¸üÐÂ
+                    if ((prog > 0 || prog == 0) && prog < 70) // Ð¡ï¿½ï¿½70%Ê±ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     {
                         SystemClock.sleep(100);
                     }
                     else
-                    // ´óÓÚ70%Ê±£¬¼õÂý½ø¶ÈÌõ¸üÐÂ
+                    // ï¿½ï¿½ï¿½ï¿½70%Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     {
                         SystemClock.sleep(300);
                     }
                     
-                    publishProgress(prog); // ¸üÐÂ½ø¶ÈÌõ
+                    publishProgress(prog); // ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½
                     prog++;
                 }
             }
@@ -363,13 +363,13 @@ public class Main extends Activity
         @Override
         protected void onProgressUpdate(Integer... values)
         {
-            mTaskItem.setProgress(values[0]); // ÉèÖÃ½ø¶È
+            mTaskItem.setProgress(values[0]); // ï¿½ï¿½ï¿½Ã½ï¿½ï¿½
         }
     }
 }
 
 /**
- * @TODO [Ò»¸ö¼òµ¥µÄ×Ô¶¨Òå ListView Item]
+ * @TODO [Ò»ï¿½ï¿½ï¿½òµ¥µï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ ListView Item]
  * @author XiaoMaGuo ^_^
  * @version [version-code, 2013-10-22]
  * @since [Product/module]

@@ -9,19 +9,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.example.voicedown.R;
-
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.widget.RemoteViews;
 import android.widget.Toast;
 
 
@@ -38,7 +31,7 @@ public class UpdateDownLoadService extends Service {
 
 	public static final String Install_Apk = "Install_Apk";
 	/******** download progress step *********/
-	private static final int down_step_custom = 3;
+//	private static final int down_step_custom = 3;
 
 	private static final int TIMEOUT = 10 * 1000;// 超时
 	private static String down_url;
@@ -47,9 +40,9 @@ public class UpdateDownLoadService extends Service {
 
 	private String app_name = "ddoctoruser";
 
-	private NotificationManager notificationManager;
-	private Notification notification;
-	private RemoteViews contentView;
+//	private NotificationManager notificationManager;
+//	private Notification notification;
+//	private RemoteViews contentView;
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -92,25 +85,25 @@ public class UpdateDownLoadService extends Service {
 			switch (msg.what) {
 			case DOWN_OK:
 
-				notification.flags = Notification.FLAG_AUTO_CANCEL;
-				notification.defaults = Notification.DEFAULT_SOUND;
-				Uri uri = Uri.fromFile(updateFile);
-				Intent intent = new Intent(Intent.ACTION_VIEW);
+//				notification.flags = Notification.FLAG_AUTO_CANCEL;
+//				notification.defaults = Notification.DEFAULT_SOUND;
+//				Uri uri = Uri.fromFile(updateFile);
+//				Intent intent = new Intent(Intent.ACTION_VIEW);
+//
+//				/********** 加这个属性是因为使用Context的startActivity方法的话，就需要开启一个新的task **********/
+//				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//				intent.setDataAndType(uri,
+//						"application/vnd.android.package-archive");
 
-				/********** 加这个属性是因为使用Context的startActivity方法的话，就需要开启一个新的task **********/
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-				intent.setDataAndType(uri,
-						"application/vnd.android.package-archive");
-
-				PendingIntent pi = PendingIntent.getActivity(
-						getApplicationContext(), 0, intent, 0);
-				notification.contentIntent = pi;
-				notificationManager.notify(R.layout.activity_main,
-						notification);
-				notificationManager.cancel(R.layout.activity_main);
-				Toast.makeText(getBaseContext(), " 下载完成，开始安装 ",
-						Toast.LENGTH_SHORT).show();
+//				PendingIntent pi = PendingIntent.getActivity(
+//						getApplicationContext(), 0, intent, 0);
+//				notification.contentIntent = pi;
+//				notificationManager.notify(R.layout.activity_main,
+//						notification);
+//				notificationManager.cancel(R.layout.activity_main);
+//				Toast.makeText(getBaseContext(), " 下载完成，开始安装 ",
+//						Toast.LENGTH_SHORT).show();
 
 				/***** 安装APK ******/
 				installApk();
@@ -118,11 +111,11 @@ public class UpdateDownLoadService extends Service {
 				break;
 
 			case DOWN_ERROR:
-				notification.flags = Notification.FLAG_AUTO_CANCEL;
-				notification.defaults = Notification.DEFAULT_SOUND;
-				notificationManager.notify(R.layout.activity_main,
-						notification);
-				notificationManager.cancel(R.layout.activity_main);
+//				notification.flags = Notification.FLAG_AUTO_CANCEL;
+//				notification.defaults = Notification.DEFAULT_SOUND;
+//				notificationManager.notify(R.layout.activity_main,
+//						notification);
+//				notificationManager.cancel(R.layout.activity_main);
 				Toast.makeText(getBaseContext(), " 下载失败 ", Toast.LENGTH_SHORT)
 						.show();
 
@@ -220,10 +213,10 @@ public class UpdateDownLoadService extends Service {
 	public long downloadUpdateFile(String down_url, String file)
 			throws Exception {
 
-		int down_step = down_step_custom;// 提示step
+//		int down_step = down_step_custom;// 提示step
 		int totalSize;// 文件总大小
 		int downloadCount = 0;// 已经下载好的大小
-		int updateCount = 0;// 已经上传的文件大小
+//		int updateCount = 0;// 已经上传的文件大小
 
 		InputStream inputStream;
 		OutputStream outputStream;
@@ -246,9 +239,9 @@ public class UpdateDownLoadService extends Service {
 		byte buffer[] = new byte[1024];
 		int readsize = 0;
 
-//		while ((readsize = inputStream.read(buffer)) != -1) {
-//
-//			outputStream.write(buffer, 0, readsize);
+		while ((readsize = inputStream.read(buffer)) != -1) {
+
+			outputStream.write(buffer, 0, readsize);
 //			downloadCount += readsize;// 时时获取下载到的大小
 //			/*** 每次增张3% **/
 //			if (updateCount == 0
@@ -263,7 +256,7 @@ public class UpdateDownLoadService extends Service {
 //				notificationManager.notify(R.layout.layout_notification_item,
 //						notification);
 //			}
-//		}
+		}
 		if (httpURLConnection != null) {
 			httpURLConnection.disconnect();
 		}

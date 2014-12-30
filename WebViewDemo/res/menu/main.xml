@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
@@ -8,17 +8,4 @@
         android:title="@string/action_settings"/>
 
 </menu>
-=======
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.xiao.webviewdemo.MainActivity" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
-
-</menu>
->>>>>>> 9b5041263e699dc5b219e02b4bc64dfe9075a416

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <resources>
 
     <string name="app_name">WebViewDemo</string>
@@ -6,3 +7,12 @@
     <string name="hello_world">Hello world!</string>
 
 </resources>
+=======
+<resources>
+
+    <string name="app_name">WebViewDemo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
+>>>>>>> 9b5041263e699dc5b219e02b4bc64dfe9075a416

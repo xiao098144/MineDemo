@@ -1,0 +1,59 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".MainActivity" >
+
+<!--         <TextView -->
+<!--             android:id="@+id/tv" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_margin="5dp" -->
+<!--             android:padding="5dp" -->
+<!--             android:textSize="18sp" -->
+<!--             android:background="@drawable/back" -->
+			
+<!--              /> -->
+        
+        <ImageView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+			
+             />
+        
+
+        <!-- <ImageButton -->
+        <!-- android:id="@+id/btn" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:src="@drawable/bt_blue" /> -->
+
+
+        <!-- <EditText -->
+        <!-- android:id="@+id/et" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:inputType="text" /> -->
+
+
+        <!-- <LinearLayout -->
+        <!-- android:id="@+id/layout" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="match_parent" -->
+        <!-- android:layout_marginLeft="8dp" -->
+        <!-- android:layout_marginRight="8dp" -->
+        <!-- android:layout_marginTop="7dp" -->
+        <!-- android:background="@android:color/black" -->
+        <!-- android:orientation="horizontal" > -->
+        <!-- </LinearLayout> -->
+    </LinearLayout>
+
+</ScrollView>

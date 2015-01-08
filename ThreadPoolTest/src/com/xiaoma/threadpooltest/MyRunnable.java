@@ -1,39 +1,29 @@
-/*
- * FileName:  MyRunnable.java
- * CopyRight:  Belong to  <XiaoMaGuo Technologies > own 
- * Description:  <description>
- * Modify By :  XiaoMaGuo ^_^ 
- * Modify Date:   2013-10-21
- * Follow Order No.:  <Follow Order No.>
- * Modify Order No.:  <Modify Order No.>
- * Modify Content:  <modify content >
- */
 package com.xiaoma.threadpooltest;
-
+ 
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
-
+ 
 /**
- * @TODO [The Class File Description]
- * @author XiaoMaGuo ^_^
- * @version [version-code, 2013-10-21]
- * @since [Product/module]
- */
-public class MyRunnable implements Runnable    
+* @TODO [The Class File Description]
+* @author XiaoMaGuo ^_^
+* @version [version-code, 2013-10-21]
+* @since [Product/module]
+*/
+public class MyRunnable implements Runnable
 {
-    
+ 
     private boolean cancleTask = false;
-    
+ 
     private boolean cancleException = false;
-    
+ 
     private Handler mHandler = null;
-    
+ 
     public MyRunnable(Handler handler)
     {
         mHandler = handler;
     }
-    
+ 
     /**
      * Overriding methods
      */
@@ -45,12 +35,12 @@ public class MyRunnable implements Runnable
         if (cancleTask == false)
         {
             running();
-            Log.i("KKK", "µ÷ÓÃMyRunnable run()·½·¨");
+            Log.i("KKK", "è°ƒç”¨MyRunnable run()æ–¹æ³•");
         }
-        
+ 
         runAfter();
     }
-    
+ 
     /**
      * <Summary Description>
      */
@@ -58,7 +48,7 @@ public class MyRunnable implements Runnable
     {
         Log.i("KKK", "runAfter()");
     }
-    
+ 
     /**
      * <Summary Description>
      */
@@ -67,7 +57,7 @@ public class MyRunnable implements Runnable
         Log.i("KKK", "running()");
         try
         {
-            // ×öµãÓĞ¿ÉÄÜ»á³öÒì³£µÄÊÂÇé£¡£¡£¡
+            // åšç‚¹æœ‰å¯èƒ½ä¼šå‡ºå¼‚å¸¸çš„äº‹æƒ…ï¼ï¼ï¼
             int prog = 0;
             if (cancleTask == false && cancleException == false)
             {
@@ -84,7 +74,7 @@ public class MyRunnable implements Runnable
                     if (cancleTask == false)
                     {
                         mHandler.sendEmptyMessage(prog++);
-                        Log.i("KKK", "µ÷ÓÃ prog++ = " + (prog));
+                        Log.i("KKK", "è°ƒç”¨ prog++ = " + (prog));
                     }
                 }
             }
@@ -94,7 +84,7 @@ public class MyRunnable implements Runnable
             cancleException = true;
         }
     }
-    
+ 
     /**
      * <Summary Description>
      */
@@ -103,12 +93,12 @@ public class MyRunnable implements Runnable
         // TODO Auto-generated method stub
         Log.i("KKK", "runBefore()");
     }
-    
+ 
     public void setCancleTaskUnit(boolean cancleTask)
     {
         this.cancleTask = cancleTask;
-        Log.i("KKK", "µã»÷ÁËÈ¡ÏûÈÎÎñ°´Å¥ £¡£¡£¡");
+        Log.i("KKK", "ç‚¹å‡»äº†å–æ¶ˆä»»åŠ¡æŒ‰é’® ï¼ï¼ï¼");
         // mHandler.sendEmptyMessage(0);
     }
-    
+ 
 }

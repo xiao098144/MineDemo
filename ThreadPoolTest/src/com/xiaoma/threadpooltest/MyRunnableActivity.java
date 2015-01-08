@@ -1,15 +1,5 @@
-/*
- * FileName:  MyRunnableActivity.java
- * CopyRight:  Belong to  <XiaoMaGuo Technologies > own 
- * Description:  <description>
- * Modify By :  XiaoMaGuo ^_^ 
- * Modify Date:   2013-10-21
- * Follow Order No.:  <Follow Order No.>
- * Modify Order No.:  <Modify Order No.>
- * Modify Content:  <modify content >
- */
 package com.xiaoma.threadpooltest;
-
+ 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,7 +8,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
+ 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,52 +18,52 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
+ 
 /**
- * @TODO [Ïß³Ì³Ø¿ØÖÆ ]
- * @author XiaoMaGuo ^_^
- * @version [version-code, 2013-10-22]
- * @since [Product/module]
- */
+* @TODO [çº¿ç¨‹æ± æ§åˆ¶ ]
+* @author XiaoMaGuo ^_^
+* @version [version-code, 2013-10-22]
+* @since [Product/module]
+*/
 public class MyRunnableActivity extends Activity implements OnClickListener
 {
-    
-    /** ÈÎÎñÖ´ĞĞ¶ÓÁĞ */
+ 
+    /** ä»»åŠ¡æ‰§è¡Œé˜Ÿåˆ— */
     private ConcurrentLinkedQueue<MyRunnable> taskQueue = null;
-    
+ 
     /**
-     * ÕıÔÚµÈ´ıÖ´ĞĞ»òÒÑ¾­Íê³ÉµÄÈÎÎñ¶ÓÁĞ
-     * 
-     * ±¸×¢£ºFutureÀà£¬Ò»¸öÓÃÓÚ´æ´¢Òì²½ÈÎÎñÖ´ĞĞµÄ½á¹û£¬±ÈÈç£ºÅĞ¶ÏÊÇ·ñÈ¡Ïû¡¢ÊÇ·ñ¿ÉÒÔÈ¡Ïû¡¢ÊÇ·ñÕıÔÚÖ´ĞĞ¡¢ÊÇ·ñÒÑ¾­Íê³ÉµÈ
-     * 
+     * æ­£åœ¨ç­‰å¾…æ‰§è¡Œæˆ–å·²ç»å®Œæˆçš„ä»»åŠ¡é˜Ÿåˆ—
+     *
+     * å¤‡æ³¨ï¼šFutureç±»ï¼Œä¸€ä¸ªç”¨äºå­˜å‚¨å¼‚æ­¥ä»»åŠ¡æ‰§è¡Œçš„ç»“æœï¼Œæ¯”å¦‚ï¼šåˆ¤æ–­æ˜¯å¦å–æ¶ˆã€æ˜¯å¦å¯ä»¥å–æ¶ˆã€æ˜¯å¦æ­£åœ¨æ‰§è¡Œã€æ˜¯å¦å·²ç»å®Œæˆç­‰
+     *
      * */
     private ConcurrentMap<Future, MyRunnable> taskMap = null;
-    
+ 
     /**
-     * ´´½¨Ò»¸ö²»ÏŞÖÆ´óĞ¡µÄÏß³Ì³Ø ´ËÀàÖ÷ÒªÓĞÒÔÏÂºÃ´¦ 1£¬ÒÔ¹²ÏíµÄÎŞ½ç¶ÓÁĞ·½Ê½À´ÔËĞĞÕâĞ©Ïß³Ì. 2£¬Ö´ĞĞĞ§ÂÊ¸ß¡£ 3£¬ÔÚÈÎÒâµã£¬ÔÚ´ó¶àÊı nThreads Ïß³Ì»á´¦ÓÚ´¦ÀíÈÎÎñµÄ»î¶¯×´Ì¬
-     * 4£¬Èç¹ûÔÚ¹Ø±ÕÇ°µÄÖ´ĞĞÆÚ¼äÓÉÓÚÊ§°Ü¶øµ¼ÖÂÈÎºÎÏß³ÌÖÕÖ¹£¬ÄÇÃ´Ò»¸öĞÂÏß³Ì½«´úÌæËüÖ´ĞĞºóĞøµÄÈÎÎñ£¨Èç¹ûĞèÒª£©¡£
-     * 
+     * åˆ›å»ºä¸€ä¸ªä¸é™åˆ¶å¤§å°çš„çº¿ç¨‹æ±  æ­¤ç±»ä¸»è¦æœ‰ä»¥ä¸‹å¥½å¤„ 1ï¼Œä»¥å…±äº«çš„æ— ç•Œé˜Ÿåˆ—æ–¹å¼æ¥è¿è¡Œè¿™äº›çº¿ç¨‹. 2ï¼Œæ‰§è¡Œæ•ˆç‡é«˜ã€‚ 3ï¼Œåœ¨ä»»æ„ç‚¹ï¼Œåœ¨å¤§å¤šæ•° nThreads çº¿ç¨‹ä¼šå¤„äºå¤„ç†ä»»åŠ¡çš„æ´»åŠ¨çŠ¶æ€
+     * 4ï¼Œå¦‚æœåœ¨å…³é—­å‰çš„æ‰§è¡ŒæœŸé—´ç”±äºå¤±è´¥è€Œå¯¼è‡´ä»»ä½•çº¿ç¨‹ç»ˆæ­¢ï¼Œé‚£ä¹ˆä¸€ä¸ªæ–°çº¿ç¨‹å°†ä»£æ›¿å®ƒæ‰§è¡Œåç»­çš„ä»»åŠ¡ï¼ˆå¦‚æœéœ€è¦ï¼‰ã€‚
+     *
      * */
     private ExecutorService mES = null;
-    
-    /** ÔÚ´ËÀàÖĞÊ¹ÓÃÍ¬²½ËøÊ±Ê¹ÓÃÈçÏÂlock¶ÔÏó¼´¿É£¬¹Ù·½ÍÆ¼öµÄ£¬²»ÍÆ¼öÖ±½ÓÊ¹ÓÃMyRunnableActivity.thisÀàĞÍµÄ,¿ÉÒÔÏêÏ¸¶ÁÒ»ÏÂ/framework/appÏÂÃæµÄËæ±ãÒ»¸öÏîÄ¿ */
+ 
+    /** åœ¨æ­¤ç±»ä¸­ä½¿ç”¨åŒæ­¥é”æ—¶ä½¿ç”¨å¦‚ä¸‹lockå¯¹è±¡å³å¯ï¼Œå®˜æ–¹æ¨èçš„ï¼Œä¸æ¨èç›´æ¥ä½¿ç”¨MyRunnableActivity.thisç±»å‹çš„,å¯ä»¥è¯¦ç»†è¯»ä¸€ä¸‹/framework/appä¸‹é¢çš„éšä¾¿ä¸€ä¸ªé¡¹ç›® */
     private Object lock = new Object();
-    
-    /** »½ĞÑ±êÖ¾£¬ÊÇ·ñ»½ĞÑÏß³Ì³Ø¹¤×÷ */
+ 
+    /** å”¤é†’æ ‡å¿—ï¼Œæ˜¯å¦å”¤é†’çº¿ç¨‹æ± å·¥ä½œ */
     private boolean isNotify = true;
-    
-    /** Ïß³Ì³ØÊÇ·ñ´¦ÓÚÔËĞĞ×´Ì¬(¼´:ÊÇ·ñ±»ÊÍ·Å!) */
+ 
+    /** çº¿ç¨‹æ± æ˜¯å¦å¤„äºè¿è¡ŒçŠ¶æ€(å³:æ˜¯å¦è¢«é‡Šæ”¾!) */
     private boolean isRuning = true;
-    
-    /** ÈÎÎñ½ø¶È */
+ 
+    /** ä»»åŠ¡è¿›åº¦ */
     private ProgressBar pb = null;
-    
-    /** ÓÃ´ËHandlerÀ´¸üĞÂÎÒÃÇµÄUI */
+ 
+    /** ç”¨æ­¤Handleræ¥æ›´æ–°æˆ‘ä»¬çš„UI */
     private Handler mHandler = null;
-    
+ 
     /**
      * Overriding methods
-     * 
+     *
      * @param savedInstanceState
      */
     @Override
@@ -84,7 +74,7 @@ public class MyRunnableActivity extends Activity implements OnClickListener
         setContentView(R.layout.my_runnable_main);
         init();
     }
-    
+ 
     public void init()
     {
         pb = (ProgressBar)findViewById(R.id.progressBar1);
@@ -99,13 +89,13 @@ public class MyRunnableActivity extends Activity implements OnClickListener
         {
             mES = Executors.newCachedThreadPool();
         }
-        
-        // ÓÃÓÚ¸üĞÂProgressBar½ø¶ÈÌõ
+ 
+        // ç”¨äºæ›´æ–°ProgressBarè¿›åº¦æ¡
         mHandler = new Handler()
         {
             /**
              * Overriding methods
-             * 
+             *
              * @param msg
              */
             @Override
@@ -114,14 +104,14 @@ public class MyRunnableActivity extends Activity implements OnClickListener
                 super.handleMessage(msg);
                 pb.setProgress(msg.what);
             }
-            
+ 
         };
-        
+ 
     }
-    
+ 
     /**
      * Overriding methods
-     * 
+     *
      * @param v
      */
     @Override
@@ -144,70 +134,70 @@ public class MyRunnableActivity extends Activity implements OnClickListener
             case R.id.button5:
                 addTask(new MyRunnable(mHandler));
                 break;
-            
+ 
             default:
                 break;
         }
     }
-    
+ 
     /**
      * <Summary Description>
      */
     private void addTask(final MyRunnable mr)
     {
-        
+ 
         mHandler.sendEmptyMessage(0);
-        
+ 
         if (mES == null)
         {
             mES = Executors.newCachedThreadPool();
             notifyWork();
         }
-        
+ 
         if (taskQueue == null)
         {
             taskQueue = new ConcurrentLinkedQueue<MyRunnable>();
         }
-        
+ 
         if (taskMap == null)
         {
             taskMap = new ConcurrentHashMap<Future, MyRunnable>();
         }
-        
+ 
         mES.execute(new Runnable()
         {
-            
+ 
             @Override
             public void run()
             {
                 /**
-                 * ²åÈëÒ»¸öRunnableµ½ÈÎÎñ¶ÓÁĞÖĞ Õâ¸öµØ·½½âÊÍÒ»ÏÂ,offer¸úadd·½·¨,ÊÔÁËÏÂ,Ğ§¹û¶¼Ò»Ñù,Ã»Çø±ğ,¹Ù·½µÄ½âÊÍÈçÏÂ: 1 offer : Inserts the specified
+                 * æ’å…¥ä¸€ä¸ªRunnableåˆ°ä»»åŠ¡é˜Ÿåˆ—ä¸­ è¿™ä¸ªåœ°æ–¹è§£é‡Šä¸€ä¸‹,offerè·Ÿaddæ–¹æ³•,è¯•äº†ä¸‹,æ•ˆæœéƒ½ä¸€æ ·,æ²¡åŒºåˆ«,å®˜æ–¹çš„è§£é‡Šå¦‚ä¸‹: 1 offer : Inserts the specified
                  * element at the tail of this queue. As the queue is unbounded, this method will never return
                  * {@code false}. 2 add: Inserts the specified element at the tail of this queue. As the queue is
                  * unbounded, this method will never throw {@link IllegalStateException} or return {@code false}.
-                 * 
-                 * 
+                 *
+                 *
                  * */
                 taskQueue.offer(mr);
                 // taskQueue.add(mr);
                 notifyWork();
             }
         });
-        
-        Toast.makeText(MyRunnableActivity.this, "ÒÑÌí¼ÓÒ»¸öĞÂÈÎÎñµ½Ïß³Ì³ØÖĞ £¡", 0).show();
+ 
+        Toast.makeText(MyRunnableActivity.this, "å·²æ·»åŠ ä¸€ä¸ªæ–°ä»»åŠ¡åˆ°çº¿ç¨‹æ± ä¸­ ï¼", 0).show();
     }
-    
+ 
     /**
      * <Summary Description>
      */
     private void release()
     {
-        Toast.makeText(MyRunnableActivity.this, "ÊÍ·ÅËùÓĞÕ¼ÓÃµÄ×ÊÔ´£¡", 0).show();
-        
-        /** ½«ProgressBar½ø¶ÈÖÃÎª0 */
+        Toast.makeText(MyRunnableActivity.this, "é‡Šæ”¾æ‰€æœ‰å ç”¨çš„èµ„æºï¼", 0).show();
+ 
+        /** å°†ProgressBarè¿›åº¦ç½®ä¸º0 */
         mHandler.sendEmptyMessage(0);
         isRuning = false;
-        
+ 
         Iterator iter = taskMap.entrySet().iterator();
         while (iter.hasNext())
         {
@@ -224,13 +214,13 @@ public class MyRunnableActivity extends Activity implements OnClickListener
         {
             mES.shutdown();
         }
-        
+ 
         mES = null;
         taskMap = null;
         taskQueue = null;
-        
+ 
     }
-    
+ 
     /**
      * <Summary Description>
      */
@@ -242,30 +232,30 @@ public class MyRunnableActivity extends Activity implements OnClickListener
             mES = Executors.newCachedThreadPool();
             notifyWork();
         }
-        
+ 
         if (taskQueue == null)
         {
             taskQueue = new ConcurrentLinkedQueue<MyRunnable>();
         }
-        
+ 
         if (taskMap == null)
         {
             taskMap = new ConcurrentHashMap<Future, MyRunnable>();
         }
-        
+ 
         mES.execute(new Runnable()
         {
-            
+ 
             @Override
             public void run()
             {
-                /** ²åÈëÒ»¸öRunnableµ½ÈÎÎñ¶ÓÁĞÖĞ */
+                /** æ’å…¥ä¸€ä¸ªRunnableåˆ°ä»»åŠ¡é˜Ÿåˆ—ä¸­ */
                 taskQueue.offer(mr);
                 // taskQueue.add(mr);
                 notifyWork();
             }
         });
-        
+ 
         mES.execute(new Runnable()
         {
             @Override
@@ -276,13 +266,13 @@ public class MyRunnableActivity extends Activity implements OnClickListener
                     MyRunnable myRunnable = null;
                     synchronized (lock)
                     {
-                        myRunnable = taskQueue.poll(); // ´ÓÏß³Ì¶ÓÁĞÖĞÈ¡³öÒ»¸öRunnable¶ÔÏóÀ´Ö´ĞĞ£¬Èç¹û´Ë¶ÓÁĞÎª¿Õ£¬Ôòµ÷ÓÃpoll()·½·¨»á·µ»Ønull
+                        myRunnable = taskQueue.poll(); // ä»çº¿ç¨‹é˜Ÿåˆ—ä¸­å–å‡ºä¸€ä¸ªRunnableå¯¹è±¡æ¥æ‰§è¡Œï¼Œå¦‚æœæ­¤é˜Ÿåˆ—ä¸ºç©ºï¼Œåˆ™è°ƒç”¨poll()æ–¹æ³•ä¼šè¿”å›null
                         if (myRunnable == null)
                         {
                             isNotify = true;
                         }
                     }
-                    
+ 
                     if (myRunnable != null)
                     {
                         taskMap.put(mES.submit(myRunnable), myRunnable);
@@ -291,30 +281,30 @@ public class MyRunnableActivity extends Activity implements OnClickListener
             }
         });
     }
-    
+ 
     /**
      * <Summary Description>
      */
     private void stop()
     {
-        
-        Toast.makeText(MyRunnableActivity.this, "ÈÎÎñÒÑ±»È¡Ïû£¡", 0).show();
-        
+ 
+        Toast.makeText(MyRunnableActivity.this, "ä»»åŠ¡å·²è¢«å–æ¶ˆï¼", 0).show();
+ 
         for (MyRunnable runnable : taskMap.values())
         {
             runnable.setCancleTaskUnit(true);
         }
     }
-    
+ 
     /**
      * <Summary Description>
      */
     private void start()
     {
-        
+ 
         if (mES == null || taskQueue == null || taskMap == null)
         {
-            Log.i("KKK", "Ä³×ÊÔ´ÊÇ²»ÊÇÒÑ¾­±»ÊÍ·ÅÁË£¿");
+            Log.i("KKK", "æŸèµ„æºæ˜¯ä¸æ˜¯å·²ç»è¢«é‡Šæ”¾äº†ï¼Ÿ");
             return;
         }
         mES.execute(new Runnable()
@@ -327,7 +317,7 @@ public class MyRunnableActivity extends Activity implements OnClickListener
                     MyRunnable myRunnable = null;
                     synchronized (lock)
                     {
-                        myRunnable = taskQueue.poll(); // ´ÓÏß³Ì¶ÓÁĞÖĞÈ¡³öÒ»¸öRunnable¶ÔÏóÀ´Ö´ĞĞ£¬Èç¹û´Ë¶ÓÁĞÎª¿Õ£¬Ôòµ÷ÓÃpoll()·½·¨»á·µ»Ønull
+                        myRunnable = taskQueue.poll(); // ä»çº¿ç¨‹é˜Ÿåˆ—ä¸­å–å‡ºä¸€ä¸ªRunnableå¯¹è±¡æ¥æ‰§è¡Œï¼Œå¦‚æœæ­¤é˜Ÿåˆ—ä¸ºç©ºï¼Œåˆ™è°ƒç”¨poll()æ–¹æ³•ä¼šè¿”å›null
                         if (myRunnable == null)
                         {
                             isNotify = true;
@@ -341,17 +331,17 @@ public class MyRunnableActivity extends Activity implements OnClickListener
                             // }
                         }
                     }
-                    
+ 
                     if (myRunnable != null)
                     {
                         taskMap.put(mES.submit(myRunnable), myRunnable);
                     }
                 }
-                
+ 
             }
         });
     }
-    
+ 
     private void notifyWork()
     {
         synchronized (lock)

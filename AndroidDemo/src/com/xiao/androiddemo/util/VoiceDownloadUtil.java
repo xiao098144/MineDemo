@@ -7,11 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -33,17 +29,22 @@ public class VoiceDownloadUtil {
 
 	public static FileBean startDown(FileBean file) {
 		Log.e("", " 开始下载 ");
-		createFile(file.getName());
-		if (isCreateFileSucess) {
-			es = Executors.newFixedThreadPool(10);
-			try {
-				return downResult(file);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				es.shutdown();
+		if (isExists(file.getName())) {
+			file.setPath(updateFile.getAbsolutePath());
+		} else {
+			createFile(file.getName());
+			if (isCreateFileSucess) {
+				es = Executors.newFixedThreadPool(10);
+				try {
+					return downResult(file);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					es.shutdown();
+				}
 			}
 		}
+		
 		return file;
 	}
 
@@ -73,15 +74,16 @@ public class VoiceDownloadUtil {
 						.openConnection();
 				httpURLConnection.setConnectTimeout(15 * 1000);
 				httpURLConnection.setReadTimeout(15 * 1000);
-				
+
 				file.setFileSize(httpURLConnection.getContentLength());
-				Log.e("", " 文件链接大小 "+httpURLConnection.getContentLength());
+				Log.e("", " 文件链接大小 " + httpURLConnection.getContentLength());
 				if (httpURLConnection.getResponseCode() == 404) {
 					throw new Exception("fail!");
 				}
 
 				inputStream = httpURLConnection.getInputStream();
-				outputStream = new FileOutputStream(updateFile.getAbsoluteFile(), false);// 文件存在则覆盖掉
+				outputStream = new FileOutputStream(
+						updateFile.getAbsoluteFile(), false);// 文件存在则覆盖掉
 
 				byte buffer[] = new byte[1024];
 				int readsize = 0;
@@ -111,30 +113,33 @@ public class VoiceDownloadUtil {
 
 	public static boolean isCreateFileSucess;
 
-	public static void createFile(String app_name) {
+	private static boolean isExists(String name) {
+		if (android.os.Environment.MEDIA_MOUNTED.equals(android.os.Environment
+				.getExternalStorageState())) {
+			updateDir = new File(FilePathUtil.getCachePath());
+			if (!updateDir.exists()) {
+				updateDir.mkdirs();
+			}
+			updateFile = new File(updateDir + "/" + name + ".3gpp");
+			return updateFile.exists();
+		}
+		return false;
+	}
 
+	public static void createFile(String name) {
 		if (android.os.Environment.MEDIA_MOUNTED.equals(android.os.Environment
 				.getExternalStorageState())) {
 			isCreateFileSucess = true;
 			Log.e("", " 创建文件 ");
-			updateDir = new File(FilePathUtil.getCachePath());
-			updateFile = new File(updateDir + "/" + app_name + ".3gpp");
-
-			if (!updateDir.exists()) {
-				updateDir.mkdirs();
+			try {
+				updateFile.createNewFile();
+			} catch (IOException e) {
+				isCreateFileSucess = false;
+				e.printStackTrace();
 			}
-			if (!updateFile.exists()) {
-				try {
-					updateFile.createNewFile();
-				} catch (IOException e) {
-					isCreateFileSucess = false;
-					e.printStackTrace();
-				}
-			}
-
 		} else {
 			isCreateFileSucess = false;
 		}
 	}
-	
+
 }

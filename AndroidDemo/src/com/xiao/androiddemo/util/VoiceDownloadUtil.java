@@ -13,7 +13,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.xiao.androiddemo.R;
 import com.xiao.demo.bean.FileBean;
 
 /**
@@ -28,8 +30,7 @@ public class VoiceDownloadUtil {
 	private static ExecutorService es;
 
 	public static FileBean startDown(FileBean file) {
-		Log.e("", " 开始下载 ");
-		if (isExists(file.getName())) {
+		if (isExists(file.getName(), file.getDownUrl().substring(file.getDownUrl().lastIndexOf(".")+1))) {
 			file.setPath(updateFile.getAbsolutePath());
 		} else {
 			createFile(file.getName());
@@ -46,6 +47,26 @@ public class VoiceDownloadUtil {
 		}
 		
 		return file;
+	}
+	
+	public static void startDown1(FileBean file, ImageView img) {
+		Log.e("", " 开始下载 ");
+		if (isExists(file.getName() , file.getDownUrl().substring(file.getDownUrl().lastIndexOf(".")+1))) {
+			img.setTag(R.id.tag_path, updateFile.getAbsolutePath());
+//			file.setPath(updateFile.getAbsolutePath());
+		} else {
+			createFile(file.getName());
+			if (isCreateFileSucess) {
+				es = Executors.newFixedThreadPool(10);
+				try {
+					img.setTag(R.id.tag_path, downResult(file).getPath());
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					es.shutdown();
+				}
+			}
+		}
 	}
 
 	public static FileBean downResult(FileBean file) throws Exception {
@@ -76,7 +97,6 @@ public class VoiceDownloadUtil {
 				httpURLConnection.setReadTimeout(15 * 1000);
 
 				file.setFileSize(httpURLConnection.getContentLength());
-				Log.e("", " 文件链接大小 " + httpURLConnection.getContentLength());
 				if (httpURLConnection.getResponseCode() == 404) {
 					throw new Exception("fail!");
 				}
@@ -113,14 +133,14 @@ public class VoiceDownloadUtil {
 
 	public static boolean isCreateFileSucess;
 
-	private static boolean isExists(String name) {
+	private static boolean isExists(String name , String suffix) {
 		if (android.os.Environment.MEDIA_MOUNTED.equals(android.os.Environment
 				.getExternalStorageState())) {
 			updateDir = new File(FilePathUtil.getCachePath());
 			if (!updateDir.exists()) {
 				updateDir.mkdirs();
 			}
-			updateFile = new File(updateDir + "/" + name + ".3gpp");
+			updateFile = new File(updateDir + "/" + name + suffix);
 			return updateFile.exists();
 		}
 		return false;

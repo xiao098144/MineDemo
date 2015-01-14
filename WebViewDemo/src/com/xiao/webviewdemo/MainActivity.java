@@ -18,11 +18,14 @@ import android.webkit.WebSettings;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+	TextView tv;
 	private WebView wv;
-	String url = "http://mp.weixin.qq.com/s?__biz=MzA4ODc5OTEyNA==&mid=200362987&idx=2&sn=e714c54dbae62d56e273f44578a065ff#rd";
+//	String url = "http://mp.weixin.qq.com/s?__biz=MzA4ODc5OTEyNA==&mid=200362987&idx=2&sn=e714c54dbae62d56e273f44578a065ff#rd";
+	String url = null;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -30,6 +33,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		wv = (WebView) findViewById(R.id.wv);
+		tv = (TextView) findViewById(R.id.tv);
+		url = getIntent().getStringExtra("url");
+		tv.setText("链接地址 "+url);
 		wv.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
 		WebSettings settings = wv.getSettings();

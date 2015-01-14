@@ -9,7 +9,7 @@ import android.media.MediaPlayer.OnErrorListener;
 /**
  * @filename VoicePlayUtil.java
  * @TODO 1、采用类级内部类实现单例 
- * 		 2、点击播放、停止、实现切换播放下一条
+ * 		 2、点击播放、停止、切换播放下一条
  * 		 3、	通过回调接口  通知界面播放状态以便更新界面
  * 		 4、使用前先调用setOnStateChangeListener()	
  * @date 2015-1-9下午5:20:57

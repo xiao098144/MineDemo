@@ -54,7 +54,7 @@ public class BitmapAct extends Activity implements OnTouchListener{
 			bmpDecoder = BitmapRegionDecoder.newInstance(
 					BitmapHandlerUtil.bmp2IS(BitmapHandlerUtil
 							.drawable2Bitmap(getResources().getDrawable(
-									R.drawable.bmp))), true);
+									R.drawable.image1))), true);
 			setImageRegion(mView.getLeft(), mView.getTop());
 		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block

@@ -62,7 +62,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 //		tv = (TextView) findViewById(R.id.tv);
 		tv = (ImageView) findViewById(R.id.tv);
-		tv.setBackgroundResource(R.drawable.sa);
 		ShopGoodsBean shopGoodsBean = new ShopGoodsBean();
 		shopGoodsBean.setDiscountPrice("123");
 		shopGoodsBean.setProBrand("proBrand");

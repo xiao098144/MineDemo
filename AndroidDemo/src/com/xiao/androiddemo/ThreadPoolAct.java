@@ -71,8 +71,13 @@ public class ThreadPoolAct extends Activity implements VoicePlayUtil.OnStateChan
 				}else {
 					if (playerState == VoicePlayUtil.PLAYING_STATE) {
 						VoicePlayUtil.getInstance().stopPlay();
-					}
-					if (last_img != current_img) {
+						if (last_img != current_img) {
+							current_img.setBackgroundResource(R.anim.voice_play);
+							anim = (AnimationDrawable) current_img.getBackground();
+							anim.start();  
+							VoicePlayUtil.getInstance().startPlay(current_img.getTag(R.id.tag_path).toString());
+						}
+					}else {
 						current_img.setBackgroundResource(R.anim.voice_play);
 						anim = (AnimationDrawable) current_img.getBackground();
 						anim.start();

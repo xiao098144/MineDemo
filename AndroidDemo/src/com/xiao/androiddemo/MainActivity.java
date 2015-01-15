@@ -7,13 +7,10 @@ import java.io.ObjectOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -27,7 +24,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -64,14 +60,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		tv = (TextView) findViewById(R.id.tv);
-		
-		String format = getResources().getString(R.string.strformat);
-		tv.setText(String.format(format, System.currentTimeMillis()));
-		tv.append("\n"+String.format(format, new SimpleDateFormat("yyyyMMddHH").format(new Date(System.currentTimeMillis()))));
-		tv.append("\n"+new SimpleDateFormat("yyyyMMddHH").format(new Date(System.currentTimeMillis())));
-		
 //		tv = (ImageView) findViewById(R.id.tv);
-//		tv.setBackgroundResource(R.drawable.sa);
 //		ShopGoodsBean shopGoodsBean = new ShopGoodsBean();
 //		shopGoodsBean.setDiscountPrice("123");
 //		shopGoodsBean.setProBrand("proBrand");

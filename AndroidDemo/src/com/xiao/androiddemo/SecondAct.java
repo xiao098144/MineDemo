@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.testin.agent.TestinAgent;
 import com.xiao.demo.bean.ShopGoodsBean;
 
 /**
@@ -60,17 +61,18 @@ public class SecondAct extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.second);
+		TestinAgent.init(this);
 		tv = (TextView) findViewById(R.id.sec_tv);
-		try {
-			SharedPreferences sp = getSharedPreferences("test", MODE_PRIVATE);
-			tv.setText(deSerialization(sp.getString("obj", null)).toString());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			SharedPreferences sp = getSharedPreferences("test", MODE_PRIVATE);
+//			tv.setText(deSerialization(sp.getString("obj", null)).toString());
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		// tv.append("Second  onCreate -- " + System.currentTimeMillis() +
 		// "\n");
 		// tv.setOnClickListener(new OnClickListener() {
@@ -181,7 +183,8 @@ public class SecondAct extends Activity {
 	}
 
 	private void getLoc() {
-		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		LocationManager locationManager = null;
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			Location location = locationManager
 					.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -190,50 +193,51 @@ public class SecondAct extends Activity {
 				longitude = location.getLongitude();
 			}
 		} else {
-			LocationListener locationListener = new LocationListener() {
-
-				// Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
-				@Override
-				public void onStatusChanged(String provider, int status,
-						Bundle extras) {
-
-				}
-
-				// Provider被enable时触发此函数，比如GPS被打开
-				@Override
-				public void onProviderEnabled(String provider) {
-
-				}
-
-				// Provider被disable时触发此函数，比如GPS被关闭
-				@Override
-				public void onProviderDisabled(String provider) {
-
-				}
-
-				// 当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
-				@Override
-				public void onLocationChanged(Location location) {
-					if (location != null) {
-						Log.e("Map",
-								"Location changed : Lat: "
-										+ location.getLatitude() + " Lng: "
-										+ location.getLongitude());
-					}
-				}
-			};
-			locationManager
-					.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-							1000, 0, locationListener);
+//			LocationListener locationListener = new LocationListener() {
+//
+//				// Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
+//				@Override
+//				public void onStatusChanged(String provider, int status,
+//						Bundle extras) {
+//
+//				}
+//
+//				// Provider被enable时触发此函数，比如GPS被打开
+//				@Override
+//				public void onProviderEnabled(String provider) {
+//
+//				}
+//
+//				// Provider被disable时触发此函数，比如GPS被关闭
+//				@Override
+//				public void onProviderDisabled(String provider) {
+//
+//				}
+//
+//				// 当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+//				@Override
+//				public void onLocationChanged(Location location) {
+//					if (location != null) {
+//						Log.e("Map",
+//								"Location changed : Lat: "
+//										+ location.getLatitude() + " Lng: "
+//										+ location.getLongitude());
+//					}
+//				}
+//			};
+//			locationManager
+//					.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+//							1000, 0, locationListener);
 			Location location = locationManager
 					.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 			if (location != null) {
 				latitude = location.getLatitude(); // 经度
 				longitude = location.getLongitude(); // 纬度
-//				tv.setText(" 纬度： " + latitude + "\n" + " 经度： " + longitude);
+				tv.setText(" 纬度： " + latitude + "\n" + " 经度： " + longitude);
 
 			}
 		}
+		tv.append("\n 纬度： " + latitude + "\n" + " 经度： " + longitude);
 	}
 
 }

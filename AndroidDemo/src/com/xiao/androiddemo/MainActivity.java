@@ -7,10 +7,13 @@ import java.io.ObjectOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -39,8 +42,8 @@ import com.xiao.demo.bean.ShopGoodsBean;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class MainActivity extends Activity {
 
-//	TextView tv;
-	ImageView tv;
+	TextView tv;
+//	ImageView tv;
 
 //	String  sa = "{\"count\":\"1\",\"store_array\":[{\"store_id\":\"3\",\"store_name\":\"\u661f\u661f\u7684\u5e97\u94fa\",\"owner_name\":\"\u7533\u6167\u4e3d\"}]}";
 	
@@ -60,30 +63,36 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		tv = (TextView) findViewById(R.id.tv);
-		tv = (ImageView) findViewById(R.id.tv);
-		tv.setBackgroundResource(R.drawable.sa);
-		ShopGoodsBean shopGoodsBean = new ShopGoodsBean();
-		shopGoodsBean.setDiscountPrice("123");
-		shopGoodsBean.setProBrand("proBrand");
-		shopGoodsBean.setProId("proId");
-		shopGoodsBean.setProImgFirst("imgFirst");
-		shopGoodsBean.setProInfo("proInfo");
-		shopGoodsBean.setProModel("proModel");
-		shopGoodsBean.setProMoreInfo("proMoreInfo");
-		shopGoodsBean.setProName("proName");
-		shopGoodsBean.setProPrice("proPrice");
-		shopGoodsBean.setProQuantity("proQuantity");
-		SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_APPEND);
-		Editor edit = sharedPreferences.edit();
+		tv = (TextView) findViewById(R.id.tv);
 		
-		try {
-			edit.putString("obj",serilize(shopGoodsBean));
-			edit.commit();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String format = getResources().getString(R.string.strformat);
+		tv.setText(String.format(format, System.currentTimeMillis()));
+		tv.append("\n"+String.format(format, new SimpleDateFormat("yyyyMMddHH").format(new Date(System.currentTimeMillis()))));
+		tv.append("\n"+new SimpleDateFormat("yyyyMMddHH").format(new Date(System.currentTimeMillis())));
+		
+//		tv = (ImageView) findViewById(R.id.tv);
+//		tv.setBackgroundResource(R.drawable.sa);
+//		ShopGoodsBean shopGoodsBean = new ShopGoodsBean();
+//		shopGoodsBean.setDiscountPrice("123");
+//		shopGoodsBean.setProBrand("proBrand");
+//		shopGoodsBean.setProId("proId");
+//		shopGoodsBean.setProImgFirst("imgFirst");
+//		shopGoodsBean.setProInfo("proInfo");
+//		shopGoodsBean.setProModel("proModel");
+//		shopGoodsBean.setProMoreInfo("proMoreInfo");
+//		shopGoodsBean.setProName("proName");
+//		shopGoodsBean.setProPrice("proPrice");
+//		shopGoodsBean.setProQuantity("proQuantity");
+//		SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_APPEND);
+//		Editor edit = sharedPreferences.edit();
+//		
+//		try {
+//			edit.putString("obj",serilize(shopGoodsBean));
+//			edit.commit();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		tv.setText(shopGoodsBean.toString());
 //		tv.setText(getFilesDir().getAbsolutePath());
 //		tv.append("\n"+getCacheDir().getAbsolutePath());

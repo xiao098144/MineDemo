@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <item name="goods_id" type="id"></item>
+    <item name="shop_id" type="id"></item>
+    
+</resources>

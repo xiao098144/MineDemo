@@ -7,10 +7,20 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name="tw.g35gtwcms.android.test.list_usb_otg.MyApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -18,28 +28,32 @@
         <activity
             android:name="tw.g35gtwcms.android.test.list_usb_otg.MainActivity"
             android:label="@string/app_name" >
-<!--             <intent-filter> -->
-<!--                 <action android:name="android.intent.action.MAIN" /> -->
-
-<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
-             
-<!--                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" /> -->
-<!--                 <action android:name="android.hardware.usb.action.USB_PERMISSION /> -->
-<!--                  -->
-                
-<!--             </intent-filter>    -->
-            
-        </activity>
-        
-        <activity android:name="tw.g35gtwcms.android.test.list_usb_otg.SecondAct"
-            >
-                        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                <action android:name="android.hardware.usb.action.USB_PERMISSION" />
             </intent-filter>
         </activity>
+        <activity android:name="tw.g35gtwcms.android.test.list_usb_otg.SecondAct" >
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+
+
+            <!-- </intent-filter> -->
+        </activity>
+        
+        
+        <meta-data android:name="TESTIN_APPKEY" android:value="7b41ace8475664a188b3b677d4e88147"/>
+        <!-- 设置渠道信息 -->
+        <meta-data android:name="TESTIN_CHANNEL" android:value="1000001"/>
         
     </application>
 

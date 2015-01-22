@@ -1,4 +1,4 @@
-package tw.g35gtwcms.android.test.list_usb_otg;
+﻿package tw.g35gtwcms.android.test.list_usb_otg;
 
 import java.io.File;
 import java.util.HashMap;

@@ -2,6 +2,7 @@ package com.xiao.customwidget;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class ExtendBasicWidget extends Activity{
 

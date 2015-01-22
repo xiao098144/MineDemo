@@ -24,6 +24,11 @@
         </activity>
         <activity android:name="com.xiao.customwidget.ExtendBasicWidget" >
         </activity>
+        
+        <activity android:name="com.xiao.customwidget.ViewPagerAct">
+            
+        </activity>
+        
     </application>
 
 </manifest>

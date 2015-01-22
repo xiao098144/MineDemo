@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 
 		// settings.setBuiltInZoomControls(true);
 
-		settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		settings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
 		settings.setDatabaseEnabled(true);
 		settings.setDefaultTextEncodingName("UTF-8");
@@ -55,16 +55,18 @@ public class MainActivity extends Activity {
 
 		// settings.setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
 		// settings.setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
-		settings.setLoadWithOverviewMode(true);
+
 		settings.setLoadsImagesAutomatically(true);
 
 		settings.setNeedInitialFocus(true);
 		/**  将图片加载放到最后再加载 提高整体渲染速度		*/
 		settings.setBlockNetworkImage(false);
 
-		// settings.setUseWideViewPort(true);
+//		 settings.setUseWideViewPort(true);
+		
+		 settings.setLoadWithOverviewMode(true);
 
-		// settings.setSupportZoom(true);
+//		 settings.setSupportZoom(false);
 		
 		settings.setJavaScriptEnabled(true);  // 只是JS 关系图片加载
 		settings.setJavaScriptCanOpenWindowsAutomatically(false);

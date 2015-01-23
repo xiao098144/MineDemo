@@ -26,11 +26,13 @@
         <activity
             android:name="com.xiao.androiddemo.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name="com.xiao.androiddemo.BitmapAct"
@@ -55,7 +57,7 @@
         <activity android:name="com.xiao.androiddemo.SecondAct" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
--                 
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -78,14 +80,11 @@
                 <data android:scheme="tencent1101709937" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="TESTIN_APPKEY"
-            android:value="7b41ace8475664a188b3b677d4e88147" />
+        
+        <meta-data android:name="TESTIN_APPKEY" android:value="7b41ace8475664a188b3b677d4e88147"/>
         <!-- 设置渠道信息 -->
-        <meta-data
-            android:name="TESTIN_CHANNEL"
-            android:value="1000001" />
+        <meta-data android:name="TESTIN_CHANNEL" android:value="1000001"/>
+        
     </application>
 
 </manifest>

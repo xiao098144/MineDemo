@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -38,8 +39,8 @@ import com.xiao.demo.bean.ShopGoodsBean;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class MainActivity extends Activity {
 
-	TextView tv;
-//	ImageView tv;
+//	TextView tv;
+	ImageView tv;
 
 //	String  sa = "{\"count\":\"1\",\"store_array\":[{\"store_id\":\"3\",\"store_name\":\"\u661f\u661f\u7684\u5e97\u94fa\",\"owner_name\":\"\u7533\u6167\u4e3d\"}]}";
 	
@@ -59,29 +60,29 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		tv = (TextView) findViewById(R.id.tv);
-//		tv = (ImageView) findViewById(R.id.tv);
-//		ShopGoodsBean shopGoodsBean = new ShopGoodsBean();
-//		shopGoodsBean.setDiscountPrice("123");
-//		shopGoodsBean.setProBrand("proBrand");
-//		shopGoodsBean.setProId("proId");
-//		shopGoodsBean.setProImgFirst("imgFirst");
-//		shopGoodsBean.setProInfo("proInfo");
-//		shopGoodsBean.setProModel("proModel");
-//		shopGoodsBean.setProMoreInfo("proMoreInfo");
-//		shopGoodsBean.setProName("proName");
-//		shopGoodsBean.setProPrice("proPrice");
-//		shopGoodsBean.setProQuantity("proQuantity");
-//		SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_APPEND);
-//		Editor edit = sharedPreferences.edit();
-//		
-//		try {
-//			edit.putString("obj",serilize(shopGoodsBean));
-//			edit.commit();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+//		tv = (TextView) findViewById(R.id.tv);
+		tv = (ImageView) findViewById(R.id.tv);
+		ShopGoodsBean shopGoodsBean = new ShopGoodsBean();
+		shopGoodsBean.setDiscountPrice("123");
+		shopGoodsBean.setProBrand("proBrand");
+		shopGoodsBean.setProId("proId");
+		shopGoodsBean.setProImgFirst("imgFirst");
+		shopGoodsBean.setProInfo("proInfo");
+		shopGoodsBean.setProModel("proModel");
+		shopGoodsBean.setProMoreInfo("proMoreInfo");
+		shopGoodsBean.setProName("proName");
+		shopGoodsBean.setProPrice("proPrice");
+		shopGoodsBean.setProQuantity("proQuantity");
+		SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_APPEND);
+		Editor edit = sharedPreferences.edit();
+		
+		try {
+			edit.putString("obj",serilize(shopGoodsBean));
+			edit.commit();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		tv.setText(shopGoodsBean.toString());
 //		tv.setText(getFilesDir().getAbsolutePath());
 //		tv.append("\n"+getCacheDir().getAbsolutePath());

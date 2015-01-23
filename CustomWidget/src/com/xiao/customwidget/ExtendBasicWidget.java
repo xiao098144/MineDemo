@@ -6,8 +6,6 @@ import android.widget.Button;
 
 public class ExtendBasicWidget extends Activity{
 
-	Button btn;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">List_OTG</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="error_sdcard_access" msgid="8005660724361043509">"无法访问存储器"</string>
+    <string name="error_app_internal" msgid="2365923237657572011">"内部应用程序错误"</string>
+</resources>
